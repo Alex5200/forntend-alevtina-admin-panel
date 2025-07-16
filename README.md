@@ -1,69 +1,94 @@
-# React + TypeScript + Vite
+# Admin Panel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Административная панель для управления контентом и приложениями.
 
-Currently, two official plugins are available:
+## Технологии
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- React Router
 
-## Expanding the ESLint configuration
+## Структура проекта
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── assets/           # Статические файлы (изображения, иконки)
+├── components/       # Компоненты приложения
+│   ├── ApplicationModal.tsx  # Модальное окно заявки
+│   ├── ApplicationTable.tsx  # Таблица с заявками
+│   ├── Dashboard.tsx         # Основная страница дашборда
+│   ├── Header.tsx            # Шапка приложения
+│   ├── PhotoModal.tsx        # Модальное окно для фото
+│   ├── Sidebar.tsx           # Боковое навигационное меню
+│   └── StatCard.tsx          # Карточка со статистикой
+├── App.tsx          # Корневой компонент приложения
+└── main.tsx         # Точка входа
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Компоненты
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Dashboard
+Главная страница приложения, отображает основную статистику и таблицу заявок.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### ApplicationTable
+Таблица для отображения и управления заявками. Включает:
+- Сортировку
+- Поиск
+- Пагинацию
+- Действия с заявками
+
+### ApplicationModal
+Модальное окно для просмотра и редактирования данных заявки.
+
+### PhotoModal
+Модальное окно для отображения фотографий в увеличенном виде.
+
+### StatCard
+Переиспользуемый компонент карточки статистики. Используется для отображения:
+- Количества заявок
+- Статусов
+- Других метрик
+
+### Sidebar
+Боковая навигационная панель. Содержит:
+- Навигационные ссылки
+- Разделы админ-панели
+- Возможность свернуть/развернуть
+
+### Header
+Верхняя панель приложения. Включает:
+- Логотип
+- Поиск
+- Профиль пользователя
+- Уведомления
+
+## Установка
+
+1. Клонируйте репозиторий:
+```bash
+git clone [repository-url]
 ```
+
+2. Установите зависимости:
+```bash
+npm install
+```
+
+3. Запустите приложение:
+```bash
+npm run dev
+```
+
+## Настройка
+
+Настройки приложения можно изменить в файле `.env`:
+
+```env
+VITE_API_URL=your_api_url
+VITE_ENV=development
+```
+
+## Лицензия
+
+MIT
